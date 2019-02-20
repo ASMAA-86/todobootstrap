@@ -32,20 +32,24 @@ class ListItem extends Component {
     const itemData = this.props.item;
 
     return (
-      <div>
-        <p
+      <div className="mt-5">
+        <div
           className="btnFontStyle"
           className={this.state.textDecoration}
           onClick={this.toggletask}
         >
-          <input className="btnFontStyle" type="checkbox" /> {itemData}
-        </p>
-        <button
-          className="btnStyle"
-          onClick={() => this.props.removeTask(this.props.index)}
-        >
-          Delete
-        </button>
+          <input className="btnFontStyle" type="checkbox" />
+          <span className="text-white"> {itemData} </span>
+          <button
+            className="delete"
+            onClick={() => this.props.removeTask(this.props.index)}
+          >
+            <img
+              src="https://png.pngtree.com/svg/20170814/fy_recycle_bin_358384.png"
+              height="20px"
+            />
+          </button>
+        </div>
       </div>
     );
   }

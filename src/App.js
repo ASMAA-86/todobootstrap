@@ -34,12 +34,24 @@ class App extends Component {
       formData: copy
     });
   };
+  //declare local storage
+  // componentDidMount() {
+  //   if (!localStorage.getItem("itemKey")) {
+  //     localStorage.setItem("itemKey", this.state.items);
+  //   }
+
+  //   localStorage.getItem("itemKey") &&
+  //     this.setState({ items: JSON.parse(localStorage.getItem("itemKey")) });
+  //   //dealing with  web server have to use json
+  // }
 
   submitForm = event => {
     //prevent the form from refreshing the page
     event.preventDefault();
     //make a copy of the memes array
     const copy = this.state.items.slice(0);
+//test to prevent pushing until be sure the array is empty
+    if(this.state.formData.task !== ""){
     //add the new meme data to the array
     copy.push(this.state.formData.task);
     //updata the state with our new copy
@@ -50,6 +62,8 @@ class App extends Component {
         task: ""
       }
     });
+  }
+    //localStorage.setItem("itemKey", copy);
   };
 
   deleteAll = event => {
@@ -58,64 +72,65 @@ class App extends Component {
     });
   };
   removeTask = index => {
-    console.log(index);
     //  copy our items array
     //  remove item based on the index
     //  set state with the updated array
-    const copy = this.state.items.slice(0);
-    copy.pop(this.state.formData.task);
+    const copy = this.state.items;
+    copy.splice(index, 1);
+    // copy.splice(copy.indexof(this.state.formData.task), 1);
     this.setState({
       items: copy
     });
   };
 
   render() {
+    //map fn iterate the array and return item and index by default
     const tasksList = this.state.items.map((item, index) => {
       return (
         //item and index to know what the fn must applay to
+        //to manipulat item in child have to pass an arguments to it and here we pass item and index
+        //RemoveTask function where task deleted by index
         <ListItem item={item} index={index} removeTask={this.removeTask} />
       );
     });
     //Form must keep it for submit only
 
     return (
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <a href="#">React </a>
-            </li>
-            <li>
-              <a href="#">My ToDo </a>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="container">
+      <div className="container mt-5">
+        <div className="container todo">
           <div>
             <h3 className="fontStyle ">My ToDo </h3>
           </div>
           <form onSubmit={this.submitForm}>
-            <input
-              type="text"
-              name="task"
-              className="divContainer"
-              onChange={this.updateForm}
-              value={this.state.formData.task}
-            />
-            <button type="submit" className="btnStyle btnFontStyle">
-              New Task
-            </button>
+            <div className="row">
+              <input
+                type="text"
+                name="task"
+                className="col-8"
+                onChange={this.updateForm}
+                value={this.state.formData.task}
+              />
+              <button type="submit" className="btnStyle btnFontStyle col-2">
+                New Task
+              </button>
+
+              <button
+                onClick={this.deleteAll}
+                className="btnStyle btnFontStyle col-2"
+              >
+                Clear all
+              </button>
+            </div>
           </form>
-          <button onClick={this.deleteAll} className="btnStyle btnFontStyle">
-            Clear all
-          </button>
           <footer className="Operaquotes">
             <h1>"Any thing you can imagine, you can create!"</h1>
             <p>Opera Winfrey</p>
           </footer>
 
-          {tasksList}
+          { console.log( this.state.items)}
+            
+            
+            { this.state.items.length === 0 ? "" : tasksList}
         </div>
       </div>
     );
@@ -123,3 +138,5 @@ class App extends Component {
 }
 
 export default App;
+//test if the length of the array is 0 if T type "" if not type my list
+//{ this.state.items.length === 0 ? "" : tasksList}

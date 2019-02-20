@@ -1,12 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url("opera2.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+  margin-right: 400px;
+  background-attachment: fixed;
+}
+
 .btnStyle {
   background-color: #99cc00; /* Green */
-  border: none;
+  border: 1px solid #ffffff26;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+.delete {
+  background-color: transparent;
+  border: 0;
 }
 
 .fontStyle {
@@ -61,4 +75,13 @@ li {
   font-size: 16px;
   padding: 15px 32px;
   text-align: center;
+}
+
+.todo {
+  margin-top: 10%;
+}
+.text-white {
+  color: #f8f8f8;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 25px;
 }

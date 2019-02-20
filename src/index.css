@@ -1,13 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  background: url("opera2.jpg");
-  background-repeat: no-repeat;
-  background-position: right top;
-  margin-right: 400px;
-  background-attachment: fixed;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
